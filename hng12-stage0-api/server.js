@@ -9,8 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to HNG 12 stage 0 API" });
-})
+    res.status(200).json({
+        email: process.env.EMAIL,
+        current_datetime: new Date().toISOString(),
+        github_url: process.env.GITHUB_URL,
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
